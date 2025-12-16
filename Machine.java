@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.Scanner;
 
 public class Machine {
 
@@ -64,18 +62,18 @@ public class Machine {
     
     private String verifierDisponibilite(int eauNecessaire, int grainsNecessaires, double prixCafe) {
         if (estEntartree()) {
-            return "ERREUR : Machine entartree - Appelez le technicien";
+            return "ERREUR : Machine entartrée - Appelez le technicien";
         }
         
         if (monnayeur < prixCafe) {
-            return "Credit insuffisant, ajoutez de la monnaie";
+            return "Crédit insuffisant, ajoutez de la monnaie";
         }
         
         if (eau < eauNecessaire) {
             return "Plus d'eau !";
         }
         if (grainsCafe < grainsNecessaires) {
-            return "Plus de grains de cafe !";
+            return "Plus de grains de café !";
         }
         if (gobelets < 1) {
             return "Plus de gobelets !";
@@ -101,7 +99,7 @@ public class Machine {
         
         bacMarc = bacMarc + 1;
         
-        System.out.println("Votre cafe est pret !");
+        System.out.println("Votre café est prêt !");
         return true;
     }
     
@@ -122,7 +120,7 @@ public class Machine {
         
         bacMarc = bacMarc + 1;
         
-        System.out.println("Votre cafe est pret !");
+        System.out.println("Votre café est prêt !");
         return true;
     }
     
@@ -130,5 +128,40 @@ public class Machine {
         double aRendre = monnayeur;
         monnayeur = 0.0;
         return aRendre;
+    }
+    
+    public void recharger() {
+        eau = 100;
+        grainsCafe = 50;
+        gobelets = 10;
+        System.out.println("Machine rechargee !");
+    }
+    
+    public void detartrer() {
+        bacMarc = 0;
+        System.out.println("Machine detartree !");
+    }
+    
+    public double recupererCaisse() {
+        double montant = caisse;
+        caisse = 0.0;
+        System.out.println("Caisse recuperee : " + montant + " euros");
+        return montant;
+    }
+    
+    public void afficherEtat() {
+        System.out.println("\n--- ETAT DE LA MACHINE ---");
+        System.out.println("Eau : " + eau + "/100 cl");
+        System.out.println("Grains : " + grainsCafe + "/50 g");
+        System.out.println("Gobelets : " + gobelets + "/10");
+        System.out.println("Cafes servis : " + bacMarc + "/" + DUREE_VIE);
+        System.out.println("Credit : " + monnayeur + " euros");
+        System.out.println("Caisse : " + caisse + " euros");
+        if (estEntartree()) {
+            System.out.println("STATUT : HORS SERVICE (entartree)");
+        } else {
+            System.out.println("STATUT : En service");
+        }
+        System.out.println("--------------------------\n");
     }
 }
