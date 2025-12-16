@@ -1,4 +1,4 @@
-# Machine à Café Connectée
+# Machine à Café
 
 ## Description
 Simulation d'une machine à café autonome installée à la Gare de Montpellier.
